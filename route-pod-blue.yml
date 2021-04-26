@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: route-pod-blue
+  namespace: route
+  labels:
+    route: blue
+spec:
+  containers:
+    - name: route
+      image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/gateway:BLUE_ROUTE_TAG
+      command: ['sh', '-c', 'sed -i "s/BLUE-WEIGHT/$BLUE_WEIGHT/g" /etc/nginx/conf.d/server.conf && service nginx restart']
+      ports:
+          containerPort: 80
+          protocol: TCP

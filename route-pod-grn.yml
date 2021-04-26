@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: route-pod-grn
+  namespace: route
+  labels:
+    route: green
+spec:
+  containers:
+    - name: route
+      image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/gateway:GRN_ROUTE_TAG
+      command: ['sh', '-c', 'sed -i "s/GREEN-WEIGHT/$GREEN_WEIGHT/g" /etc/nginx/conf.d/server.conf && service nginx restart']
+      ports:
+          containerPort: 80
+          protocol: TCP

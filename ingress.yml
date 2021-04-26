@@ -2,10 +2,13 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: nginx-ingress
-  namespace: ENV
+  namespace: route
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/actions.forward-multiple-tg: >
+      {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"route-service-grn","ServicePort":"80","Weight":ROUTE-GRN},{"ServiceName":"route-service-blue","ServicePort":"80","Weight":ROUTE-BLUE}],"TargetGroupStickinessConfig":{"Enabled":true,"DurationSeconds":200}}}
     alb.ingress.kubernetes.io/tags: Owner=Maxim_Manovitskiy,Name=Ingress-contr-load-balancer,ResourceName=ALB
   labels:
     app: nginx
@@ -16,6 +19,6 @@ spec:
         paths:
           - path: /*
             backend:
-              serviceName: "nginx-service-ENV"
-              servicePort: 80
+              serviceName: forward-multiple-tg
+              servicePort: use-annotation
 
