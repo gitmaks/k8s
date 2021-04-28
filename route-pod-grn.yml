@@ -9,7 +9,14 @@ spec:
   containers:
     - name: route
       image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/gateway:GRN_ROUTE_TAG
-      command: ['sh', '-c', 'sed -i "s/GREEN-WEIGHT/$GREEN_WEIGHT/g" /etc/nginx/conf.d/server.conf && service nginx restart']
       ports:
           containerPort: 80
           protocol: TCP
+      volumeMounts:
+      - name: route-grn
+        mountPath: /etc/nginx/conf.d/
+  volumes:
+    - name: route-grn
+      configMap:
+        name: route-grn
+  restartPolicy: Never
