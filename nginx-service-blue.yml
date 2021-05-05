@@ -6,7 +6,6 @@ metadata:
 spec:
   selector:
     app: nginx
-    nginx/version: "IMAGE_TAG"
   ports:
     - name: web
       port: 80
