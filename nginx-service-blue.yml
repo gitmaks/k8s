@@ -8,7 +8,7 @@ spec:
     app: nginx
     nginx/version: "IMAGE_TAG"
   ports:
-    - protocol: TCP
+    - name: web
       port: 80
   type: ClusterIP
 
