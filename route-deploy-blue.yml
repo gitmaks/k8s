@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: route-deploy-blue
+  namespace: route
+  labels:
+    route: blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      route: blue
+  template:
+    metadata:
+      namespace: route
+      labels:
+        route: blue
+    spec:
+      containers:
+        - name: route
+          image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/gateway:BLUE_ROUTE_TAG
+          volumeMounts:
+          - name: route-blue
+            mountPath: /etc/nginx/conf.d/
+          ports:
+          - name: web
+            containerPort: 80
+            protocol: TCP
+      volumes:
+      - name: route-blue
+        configMap:
+          name: route-blue
