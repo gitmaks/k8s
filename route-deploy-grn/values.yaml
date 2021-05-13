@@ -1,0 +1,6 @@
+# Default values for route-deploy-blue.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+AWS_REGION: us-east-1
+GRN_ROUTE_TAG: 1
