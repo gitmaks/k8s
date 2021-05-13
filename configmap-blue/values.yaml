@@ -1,0 +1,6 @@
+# Default values for configmap-blue.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+BLUE_WEIGHT: 50
+GREEN_WEIGHT: 50

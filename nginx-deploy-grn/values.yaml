@@ -1,0 +1,6 @@
+# Default values for nginx-deploy-grn.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+AWS_REGION: us-east-1
+IMAGE_TAG: 1
