@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/ecr_images_from_jenkins:IMAGE_TAG
+        image: {{ .Values.ACCOUNT_ID }}.dkr.ecr.{{ .Values.AWS_REGION }}.amazonaws.com/ecr_images_from_jenkins:{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: 80

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: route
-          image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/gateway:BLUE_ROUTE_TAG
+          image: {{ .Values.ACCOUNT_ID }}.dkr.ecr.{{ .Values.AWS_REGION }}.amazonaws.com/gateway:{{ .Values.BLUE_ROUTE_TAG }}
           volumeMounts:
           - name: route-blue
             mountPath: /etc/nginx/conf.d/
