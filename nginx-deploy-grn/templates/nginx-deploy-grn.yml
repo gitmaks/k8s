@@ -15,10 +15,14 @@ spec:
       namespace: green
       labels:
         app: nginx
-        nginx/version: "IMAGE_TAG"
     spec:
       containers:
       - name: nginx
         image: {{ .Values.ACCOUNT_ID }}.dkr.ecr.{{ .Values.AWS_REGION }}.amazonaws.com/ecr_images_from_jenkins:{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
