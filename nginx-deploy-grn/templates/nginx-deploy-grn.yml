@@ -15,7 +15,6 @@ spec:
       namespace: green
       labels:
         app: nginx
-        nginx/version: "IMAGE_TAG"
     spec:
       containers:
       - name: nginx
