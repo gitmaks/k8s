@@ -1,0 +1,13 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nginx-blue
+  namespace: green
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-blue
+  minReplicas: {{ .Values.MIN_COUNT }}
+  maxReplicas: {{ .Values.MAX_COUNT }}
+  targetCPUUtilizationPercentage: {{ .Values.CPU_PERCENT }}
