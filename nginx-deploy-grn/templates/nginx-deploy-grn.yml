@@ -23,6 +23,6 @@ spec:
         - containerPort: 80
         resources:
           limits:
-            cpu: 1024m
+            cpu: {{ .Values.LIMIT_CPU }}
           requests:
-            cpu: 200m
+            cpu: {{ .Values.REQUEST_CPU }}
