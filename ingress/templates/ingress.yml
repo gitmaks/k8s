@@ -6,7 +6,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/actions.forward-multiple-tg: >
       {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"route-service-grn","ServicePort":"80","Weight":{{ .Values.ROUTE_GRN }}},{"ServiceName":"route-service-blue","ServicePort":"80","Weight":{{ .Values.ROUTE_BLUE }}}],"TargetGroupStickinessConfig":{"Enabled":true,"DurationSeconds":200}}}
     alb.ingress.kubernetes.io/tags: Owner={{ .Values.Owner }},Name=Ingress-contr-load-balancer,ResourceName=ALB
